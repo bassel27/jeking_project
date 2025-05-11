@@ -9,12 +9,12 @@ pipeline {
     stages {
         stage('Build') {
             agent {
-                docker {
-                    image 'node:18-alpine'
-                    args '-v /var/run/docker.sock:/var/run/docker.sock -e DOCKER_HOST=unix:///var/run/docker.sock'
-                    reuseNode true
-                }
-            }
+    docker {
+        image 'node:18-alpine'
+        args '-v /var/run/docker.sock:/var/run/docker.sock -u root'
+        reuseNode true
+    }
+}
             steps {
                 sh '''
                     ls -la
